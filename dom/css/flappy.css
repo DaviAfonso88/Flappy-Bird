@@ -12,8 +12,10 @@
   border: 5px solid dodgerblue;
   height: 60vh;
   max-height: 700px;
+  min-height: 400px;
   width: 80vw;
   max-width: 1200px;
+  min-width: 300px;
   margin: 5vh auto;
   background-color: deepskyblue;
   overflow: hidden;
@@ -45,6 +47,7 @@
   height: 30px;
   width: 10vw;
   max-width: 130px;
+  min-width: 40px;
   background: linear-gradient(90deg, #639301, #a5e82e);
   border: 2px solid #000;
 }
@@ -52,6 +55,7 @@
 .barreira .corpo {
   width: 8vw;
   max-width: 110px;
+  min-width: 35px;
   background: linear-gradient(90deg, #639301, #a5e82e);
   border-left: 2px solid #000;
   border-right: 2px solid #000;
@@ -95,19 +99,36 @@
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-@media (max-width: 600px) {
+/* RESPONSIVO MOBILE E TABLET */
+@media (max-width: 900px) {
   [wm-flappy] {
-    height: 75vh;
-    width: 95vw;
-    margin: 2.5vh auto;
+    height: 70vh;
+    width: 90vw;
+    margin: 2vh auto;
   }
 
   .barreira .borda {
-    width: 18vw;
+    width: 15vw;
   }
 
   .barreira .corpo {
-    width: 15vw;
+    width: 12vw;
+  }
+
+  .progresso {
+    font-size: 10vw;
+  }
+
+  .restart,
+  .start {
+    font-size: 6vw;
+    padding: 3vh 5vw;
+  }
+}
+
+@media (max-width: 600px) {
+  [wm-flappy] {
+    height: 100vh;
   }
 
   .progresso {
