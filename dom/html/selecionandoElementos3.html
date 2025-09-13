@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selecionar Elementos #03</title>
     <link rel="stylesheet" href="/dom/css/estilo.css">
     <style>
@@ -28,7 +29,7 @@
             <option value="pt-br">Português (Brasil)</option>
             <option value="en-us">Inglês (Americano)</option>
         </select>
-        <button>Pesquisar</button>
+        <button type="submit">Pesquisar</button>
     </form>
     <script>
         console.log(document.forms)
@@ -38,8 +39,7 @@
         console.log(document.pesquisa.q)
         document.pesquisa.q.value = 'Linux'
         document.pesquisa.hl.value = 'en-us'
-        console.log(document.pesquisa.hl.selectIndex)
-
+        console.log(document.pesquisa.hl.selectedIndex)
     </script>
 </body>
 

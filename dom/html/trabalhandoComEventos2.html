@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='UTF-8'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalhando com Eventos #02</title>
-    <link rel='stylesheet' href='/dom/css/estilo.css'>
+    <link rel="stylesheet" href="/dom/css/estilo.css">
 </head>
 
 <body class="conteudo exercicio">
     <div>Elemento</div>
+
     <script>
-        const item = document.querySelector('div')
-        item.style.position = 'absolute'
+        const item = document.querySelector('div');
+        item.style.position = 'absolute';
 
         item.onmousemove = e => {
-            const item = e.target
-            item.style.cursor = 'move'
+            const el = e.target;
+            el.style.cursor = 'move';
             if (e.buttons) {
-                item.style.top = `${e.clientY - (item.clientHeight / 2)}px`
-                item.style.left = `${e.clientX - (item.clientWidth / 2)}px`
+                el.style.top = `${e.clientY - (el.clientHeight / 2)}px`;
+                el.style.left = `${e.clientX - (el.clientWidth / 2)}px`;
             }
         }
     </script>
 </body>
+
+</html>

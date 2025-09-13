@@ -98,16 +98,16 @@ body {
 
 @media (max-width: 768px) {
   .exercicio div {
-    font-size: 1.6em;
-    padding: 15px 20px;
+    font-size: 1.6em !important;
+    padding: 15px 20px !important;
   }
 
   .menu-principal nav {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .menu-principal a {
-    font-size: 1em;
-    padding: 10px;
+    font-size: 1em !important;
+    padding: 10px !important;
   }
 }

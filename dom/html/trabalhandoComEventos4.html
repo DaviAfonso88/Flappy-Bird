@@ -1,21 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='UTF-8'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalhando com Eventos #04</title>
-    <link rel='stylesheet' href='/dom/css/estilo.css'>
+    <link rel="stylesheet" href="/dom/css/estilo.css">
     <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         form input,
         form select,
         form button {
-            margin: 10px;
-            font-size: 1.6em;
+            margin: 10px 0;
+            font-size: 1.2em;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: dodgerblue;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: deepskyblue;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+                padding: 15px;
+            }
+
+            form input,
+            form select,
+            form button {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -23,42 +68,31 @@
 <body class="conteudo exercicio">
     <h1>Formulário</h1>
     <form name="pesquisa" action="http://www.google.com.br/search">
-        <input type="text" name="q" placeholder="Digite o termo...">
+        <input type="text" name="q" placeholder="Digite o termo..." required>
         <select name="hl">
             <option value="pt-br">Português (Brasil)</option>
             <option value="en-us">Inglês (Americano)</option>
         </select>
-        <button wm-submit>Pesquisar</button>
+        <button type="submit" wm-submit>Pesquisar</button>
     </form>
+
     <script>
-        // const submit = document.querySelector('[wm-submit]')
-        // submit.onclick = function (e) {
-        //     e.preventDefault()
+        const form = document.forms[0];
 
-        //     const form = e.target.parentNode
-        //     const formData = new FormData(e.form)
-        //     formData.append('ajax', true)
-        //     console.log(formData.get('q'))
-        //     console.log(formData.has('hl'))
-
-        //     for (let dado of formData) {
-        //         console.log(dado)
-        //     }
-        // }
-
-        const form = document.forms[0]
         form.onsubmit = function (e) {
-            e.preventDefault()
+            e.preventDefault(); // impede o envio padrão
 
-            const form = e.target
-            const formData = new FormData(form)
-            formData.append('ajax', true)
-            console.log(formData.get('q'))
-            console.log(formData.has('hl'))
+            const formData = new FormData(form);
+            formData.append('ajax', true);
+
+            console.log('Valor de q:', formData.get('q'));
+            console.log('Existe hl?', formData.has('hl'));
 
             for (let dado of formData) {
-                console.log(dado)
+                console.log(dado);
             }
-        }
+        };
     </script>
 </body>
+
+</html>
