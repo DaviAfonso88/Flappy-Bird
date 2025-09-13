@@ -4,6 +4,14 @@
 ![Linguagem](https://img.shields.io/badge/javascript-ES6-yellow)
 ![Licença](https://img.shields.io/badge/licença-MIT-green)
 
+## 🌐 Veja o Projeto Online
+
+Você pode acessar o projeto diretamente pelo link abaixo:
+
+[Manipulação DOM - Projeto Online](https://manipulacao-dom.netlify.app/)
+
+---
+
 ## 🎯 Objetivo
 Este repositório reúne uma série de experimentos e estudos realizados em **JavaScript puro**, sem frameworks, com foco em:
 - Aprender **manipulação direta do DOM**.  
@@ -43,7 +51,6 @@ Funcionalidades implementadas:
 
 ## 🛠️ Possíveis Melhorias
 - Adicionar sons e efeitos visuais no jogo.
-- Tornar o Flappy Bird responsivo.
 - Implementar ranking de pontuação. 
 - Refatorar o projeto usando frameworks modernos (React ou Vue) para estudo comparativo. 
 
