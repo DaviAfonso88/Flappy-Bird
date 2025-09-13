@@ -43,7 +43,6 @@ Funcionalidades implementadas:
 
 ## 🛠️ Possíveis Melhorias
 - Adicionar sons e efeitos visuais no jogo.
-- Tornar o Flappy Bird responsivo.
 - Implementar ranking de pontuação. 
 - Refatorar o projeto usando frameworks modernos (React ou Vue) para estudo comparativo. 
 
