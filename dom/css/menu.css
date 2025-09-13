@@ -1,34 +1,63 @@
 body {
-    background-color: lightgray;
+  background-color: lightgray;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .menu-principal {
-    min-width: 500px;
-    text-align: center;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .menu-principal h1 {
-    background: #333;
-    color: #fff;
-    border-bottom: solid 5px #4faddb;
-    padding: 15px 0px;
-    margin: 0;
+  background: #333;
+  color: #fff;
+  border-bottom: solid 5px #4faddb;
+  padding: 15px 0;
+  margin: 0;
 }
 
 .menu-principal nav {
-    display: inline-block;
-    background-color: #fff;
-    min-width: 248px;
+  display: inline-block;
+  background-color: #fff;
+  min-width: 248px;
+  text-align: left;
 }
 
 .menu-principal a {
-    display: block;
-    padding: 10px 0px;
-    text-decoration: none;
-    color: #222;
-    font-size: 1.2em;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #222;
+  font-size: 1.2em;
 }
 
 .menu-principal a:hover {
-    background-color: rgba(79, 173, 219, .4);
+  background-color: rgba(79, 173, 219, 0.4);
+}
+
+@media (max-width: 768px) {
+  .menu-principal nav {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .menu-principal a {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-principal h1 {
+    font-size: 1.4em;
+    padding: 10px 0;
+  }
+
+  .menu-principal a {
+    font-size: 0.95em;
+    padding: 10px 15px;
+  }
 }
