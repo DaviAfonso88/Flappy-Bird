@@ -1,4 +1,4 @@
-// Função utilitária para criar elementos com classe CSS
+// Função para criar elementos com classe
 function novoElemento(tagName, className) {
   const elem = document.createElement(tagName);
   elem.className = className;
@@ -16,7 +16,6 @@ class Barreira {
     this.elemento.appendChild(reversa ? borda : corpo);
 
     this.corpo = corpo;
-    this.borda = borda;
   }
 
   setAltura(altura) {
@@ -41,7 +40,6 @@ class ParDeBarreiras {
     this.setX(x);
   }
 
-  // Sorteia as alturas do corpo superior e inferior
   sortearAbertura() {
     const alturaSuperior = Math.random() * (this.altura - this.abertura);
     const alturaInferior = this.altura - this.abertura - alturaSuperior;
@@ -50,7 +48,7 @@ class ParDeBarreiras {
   }
 
   getX() {
-    return parseInt(this.elemento.style.left.split("px")[0]) || 0;
+    return parseInt(this.elemento.style.left) || 0;
   }
 
   setX(x) {
@@ -72,6 +70,7 @@ class Barreiras {
     ];
 
     const deslocamento = 3;
+
     this.animar = () => {
       this.pares.forEach((par) => {
         par.setX(par.getX() - deslocamento);
@@ -80,9 +79,11 @@ class Barreiras {
           par.setX(par.getX() + espaco * this.pares.length);
           par.sortearAbertura();
         }
+
         const meio = largura / 2;
         const cruzouOMeio =
           par.getX() + deslocamento >= meio && par.getX() < meio;
+
         if (cruzouOMeio) notificarPonto();
       });
     };
@@ -96,11 +97,11 @@ class Passaro {
     this.elemento = novoElemento("img", "passaro");
     this.elemento.src = "imgs/passaro.png";
 
-    this.getY = () => parseInt(this.elemento.style.bottom.split("px")[0]) || 0;
+    this.getY = () => parseInt(this.elemento.style.bottom) || 0;
     this.setY = (y) => (this.elemento.style.bottom = `${y}px`);
 
-    window.onkeydown = (e) => (voando = true);
-    window.onkeyup = (e) => (voando = false);
+    window.onkeydown = () => (voando = true);
+    window.onkeyup = () => (voando = false);
 
     this.animar = () => {
       const novoY = this.getY() + (voando ? 8 : -5);
@@ -114,17 +115,94 @@ class Passaro {
         this.setY(novoY);
       }
     };
+
     this.setY(alturaJogo / 2);
   }
 }
 
-const barreiras = new Barreiras(700, 1200, 200, 400);
-const passaro = new Passaro(700);
-const areaDoJogo = document.querySelector("[wm-flappy]");
-areaDoJogo.appendChild(passaro.elemento);
+// Classe que mostra a pontuação
+class Progresso {
+  constructor() {
+    this.elemento = novoElemento("span", "progresso");
+    this.atualizarPontos = (pontos) => {
+      this.elemento.innerHTML = pontos;
+    };
+    this.atualizarPontos(0);
+  }
+}
 
-barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
-setInterval(() => {
-  barreiras.animar();
-  passaro.animar();
-}, 20);
+// Função para detectar sobreposição de elementos
+function estaoSobrepostos(elementoA, elementoB) {
+  const a = elementoA.getBoundingClientRect();
+  const b = elementoB.getBoundingClientRect();
+
+  const horizontal = a.left + a.width >= b.left && b.left + b.width >= a.left;
+  const vertical = a.top + a.height >= b.top && b.top + b.height >= a.top;
+
+  return horizontal && vertical;
+}
+
+// Função que verifica se o pássaro colidiu com alguma barreira
+function colidiu(passaro, barreiras) {
+  let colidiu = false;
+  barreiras.pares.forEach((par) => {
+    if (!colidiu) {
+      const superior = par.superior.elemento;
+      const inferior = par.inferior.elemento;
+      colidiu =
+        estaoSobrepostos(passaro.elemento, superior) ||
+        estaoSobrepostos(passaro.elemento, inferior);
+    }
+  });
+  return colidiu;
+}
+
+// Classe principal do jogo
+class FlappyBird {
+  constructor() {
+    let pontos = 0;
+
+    const areaDoJogo = document.querySelector("[wm-flappy]");
+    const botaoRestart = novoElemento("button", "restart");
+    const altura = areaDoJogo.clientHeight;
+    const largura = areaDoJogo.clientWidth;
+
+    const progresso = new Progresso();
+    const barreiras = new Barreiras(altura, largura, 200, 400, () =>
+      progresso.atualizarPontos(++pontos)
+    );
+    const passaro = new Passaro(altura);
+
+    areaDoJogo.appendChild(progresso.elemento);
+    areaDoJogo.appendChild(passaro.elemento);
+    areaDoJogo.appendChild(botaoRestart);
+    barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+
+    // Botão de restart
+    botaoRestart.innerText = "Restart";
+
+    botaoRestart.onclick = () => {
+      // Remove elementos antigos
+      areaDoJogo.innerHTML = "";
+      // Cria e inicia um novo jogo
+      new FlappyBird().start();
+    };
+
+    this.start = () => {
+      const temporizador = setInterval(() => {
+        barreiras.animar();
+        passaro.animar();
+
+        if (colidiu(passaro, barreiras)) {
+          clearInterval(temporizador);
+
+          // Exibe botão de restart quando o jogo termina
+          botaoRestart.style.display = "block";
+        }
+      }, 20);
+    };
+  }
+}
+
+// Inicializa o jogo
+new FlappyBird().start();
