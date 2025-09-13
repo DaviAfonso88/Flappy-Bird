@@ -52,6 +52,6 @@ Funcionalidades implementadas:
 ## 🚀 Como Executar
 1. Clone o repositório:  
    ```bash
-   git clone https://github.com/DaviAfonso88/JavaScript-Fundamentals.git
+   git clone https://github.com/DaviAfonso88/Flappy-Bird.git
 2. Abra o arquivo `index.html` no navegador.
 3. Navegue entre os exemplos ou acesse `flappy.html` para jogar o Flappy Bird.
