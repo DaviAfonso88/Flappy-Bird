@@ -62,3 +62,19 @@ Funcionalidades implementadas:
    git clone https://github.com/DaviAfonso88/Flappy-Bird.git
 2. Abra o arquivo `index.html` no navegador.
 3. Navegue entre os exemplos ou acesse `flappy.html` para jogar o Flappy Bird.
+
+---
+
+## 👨‍💻 Desenvolvido por
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+         <img src="https://avatars.githubusercontent.com/u/89953265?v=4" width="100px;" alt="Foto de Davi Afonso no GitHub"/><br>
+        <sub>
+          <b>Davi Afonso</b>
+        </sub>
+      </a>
+    </td>
+</table>
